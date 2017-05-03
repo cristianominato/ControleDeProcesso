@@ -1,1 +1,0 @@
-armazenar documentação (um arquivo backlog pelo menos, diagramas de classe, mer, arquivo .astah, etc, casos de uso, casos de teste)

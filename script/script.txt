@@ -1,1 +1,0 @@
-armazenar os scripts do banco de dados (criação do banco, criação de tabelas, inserções iniciais e/ou para teste)
