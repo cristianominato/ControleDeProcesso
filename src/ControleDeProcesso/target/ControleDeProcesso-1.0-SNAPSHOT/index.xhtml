@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Menu</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:stack icon="/stacks.png" expanded="true">
+                <p:menuitem value="Sair" icon="/sair.png" url="https://www.google.com.br/"/>
+                <p:menuitem value="Envio_de_Desenhos" icon="/envio.png" url="http://localhost:8084/ControleDeProcesso/faces/cadastroenviodesenho.xhtml"/>
+                <p:menuitem value="Abrir" icon="/abrir.png" url="#"/>
+                <p:menuitem value="Novo" icon="/cadastro.png" url="http://localhost:8084/ControleDeProcesso/faces/cadastarestrutura.xhtml"/>
+                <p:menuitem value="Cadastro_Usuario" icon="/usuario.png" url="http://localhost:8084/ControleDeProcesso/faces/usuario.xhtml"/> 
+            </p:stack>
+        </h:form>
+        <br/>
+        <!--<h:link outcome="login.xhtml" value="Login" />-->
+    </h:body>
+</html>
+

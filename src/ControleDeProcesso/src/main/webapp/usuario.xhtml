@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Usuarios</title>
+        <h:outputScript target="head">$=jQuery;
+        
+        </h:outputScript>
+    </h:head>
+    
+
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            $("#bt1").click(
+    function() {
+        setTimeout(
+            function() {
+                document.location.reload();
+            },
+            1000);
+    });
+    
+        });
+    
+        
+    </script>
+    
+    
+    <h:body>
+        <h:form prependId="false">
+            <p:growl id="messages"/>
+        <p:menubar>
+            <p:menuitem value="Novo" icon="ui-icon-document" />
+            <p:menuitem id="bt1" value="Salvar" icon="ui-icon-disk" action="#{jsfUsuario.persist()}"/>
+            <p:menuitem value="Atualizar" icon="ui-icon-bookmark" action="#{jsfUsuario.merge()}" />
+            <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
+        </p:menubar>
+            <br/>
+            Nome:
+            <p:inputText value="#{jsfUsuario.login}" />
+            <br/>
+            Senha:
+            <p:password value="#{jsfUsuario.senha}" />
+            <br/>
+            Permissao:
+            <p:selectOneMenu id="permissao" value="#{jsfUsuario.permissao}" style="width:200px">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                <f:selectItem itemLabel="Projeto" itemValue="Projeto" />                        
+                <f:selectItem itemLabel="Nucleo" itemValue="Nucleo" />                        
+                <f:selectItem itemLabel="Parte Ativa" itemValue="Parte Ativa" />                        
+                <f:selectItem itemLabel="Caldeiraria" itemValue="Caldeiraria" />                        
+                <f:selectItem itemLabel="Pintura" itemValue="Pintura" />                        
+                <f:selectItem itemLabel="Fechamento" itemValue="Fechamento" />                        
+                <f:selectItem itemLabel="Laboratorio" itemValue="Laboratorio" />
+                <f:selectItem itemLabel="Expedicao" itemValue="Expedicao" />
+            </p:selectOneMenu>
+            <br/>
+            <br/>
+            <h3 style="margin-top:0"></h3>
+            <p:tabView>
+                <p:tab title="Usuarios Cadastrados">
+                    <h:panelGrid columns="5" cellpadding="10" >                
+                        <p:dataTable id="usuarioscadastrados" var="usu" value="#{jsfUsuario.all}">
+                            <p:column style="width: 100px" headerText="Usuario">
+                                <h:outputText value="#{usu.login}" style="width: 30px" />
+                            </p:column>
+                            <p:column style="width: 60px" headerText="Senha">
+                                <h:outputText value="#{usu.senha}" style="width: 10px" />
+                            </p:column>
+                            <p:column style="width: 50px" headerText="Permissão">
+                                <h:outputText value="#{usu.permissao}" style="width: 40px" />
+                            </p:column>
+                            <p:column style="width: 20px" headerText="Excluir">
+                                <p:growl id="message" showDetail="true" />
+                                <p:commandButton value="Excluir" actionListener="#{jsfUsuario.remove(usu)}" update="message" icon="ui-icon-trash" style="align-items: center">
+                                    <p:confirm id="re1" header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:column>
+                            <p:column style="width: 20px" headerText="Editar">
+                                <p:commandButton value="Editar" action="#{jsfUsuario.show(usu)}" icon="ui-icon-pencil"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:tab>
+            </p:tabView>
+        </h:form>
+        <!--<h:link outcome="index" value="Voltar ao Menu" />-->
+    </h:body>
+</html>
+

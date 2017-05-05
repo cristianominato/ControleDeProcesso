@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <style>
+
+#teste{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-260px;
+    margin-top:-125px;
+    width: 320px;
+    height: 170px;
+    border: 2px solid #6495ED;
+    padding: 10px;
+    text-align: center;
+    font-family: calibri;
+    font-size: 13px;
+    border-radius: 50px;
+}
+</style>
+    
+  
+    
+    <h:body>
+      <h:form id="formLogin">
+          <div id="teste">
+       <h1><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h1>
+        <h:panelGrid id="gridLoginSenha" columns="2">
+          <h:outputText id="loginText" value="Login:"/>
+          <h:inputText id="login" label="Login"
+            value="#{jsfLogin.usuario.login}" required="true"/>
+
+          <h:outputText id="senhaText" value="Senha:"/>
+          <h:inputSecret id="senha" label="Senha"
+            value="#{jsfLogin.usuario.senha}" required="true"/>
+        </h:panelGrid>
+        <h:messages id="msgErro" style="color: red"/>
+        <h:commandButton id="botao" value="Entrar" action="#{jsfLogin.doEfetuarLogin()}"/>
+        </div><br/>
+      </h:form>
+    </h:body>
+</html>
