@@ -1,6 +1,12 @@
+#services:
+#- postgresql
 before_script:
-- cd src/ControleDeProcesso
+# - psql -c 'create database tecservice;' -U postgres
+# - psql -U postgres -d tecservice -f script/database/create_tables.sql
+# - psql -U postgres -d tecservice -f script/database/fill_tables.sql
+ - cd src/ControleDeProcesso
+# - ls
 language: java
 jdk:
-- oraclejdk8
-script:mvn clean verify -DskipTests=false -DskipITs=false - DskipSTs=false
+  - oraclejdk8
+script: mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
