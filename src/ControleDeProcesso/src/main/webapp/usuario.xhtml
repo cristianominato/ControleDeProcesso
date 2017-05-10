@@ -14,7 +14,7 @@
 
     <script type="text/javascript"> 
         $(document).ready(function(){
-            $("#bt1").click(
+            $("#bt1,#bt2,#message").click(
     function() {
         setTimeout(
             function() {
@@ -74,18 +74,18 @@
                             <p:column style="width: 50px" headerText="Permissão">
                                 <h:outputText value="#{usu.permissao}" style="width: 40px" />
                             </p:column>
-                            <p:column style="width: 20px" headerText="Excluir">
+                            <p:column style="width: 6px" headerText="Excluir">
                                 <p:growl id="message" showDetail="true" />
-                                <p:commandButton value="Excluir" actionListener="#{jsfUsuario.remove(usu)}" update="message" icon="ui-icon-trash" style="align-items: center">
-                                    <p:confirm id="re1" header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                                <p:commandButton  action="#{jsfUsuario.remove(usu)}" update="message" icon="ui-icon-trash">
+                                    <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
                                 </p:commandButton>
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton id="bt2" value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog>
                             </p:column>
-                            <p:column style="width: 20px" headerText="Editar">
-                                <p:commandButton value="Editar" action="#{jsfUsuario.show(usu)}" icon="ui-icon-pencil"/>
+                            <p:column style="width: 6px" headerText="Editar" >
+                                <p:commandButton action="#{jsfUsuario.show(usu)}" icon="ui-icon-pencil"/>
                             </p:column>
                         </p:dataTable>
                     </h:panelGrid>
