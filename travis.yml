@@ -1,5 +1,5 @@
 before_script:
-- cd ControleDeProcesso/src/ControleDeProcesso
+- cd src/ControleDeProcesso
 language: java
 jdk:
 - oraclejdk8
