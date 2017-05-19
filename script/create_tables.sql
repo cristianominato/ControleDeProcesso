@@ -14,5 +14,5 @@ CREATE TABLE cadastrodesenho
   CONSTRAINT "PK_desenho" PRIMARY KEY (desenho),
   CONSTRAINT "FK_cadastroenviodesenho" FOREIGN KEY ("FK_cadastroenviodesenho")
       REFERENCES cadastroenviodesenho (nome) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
