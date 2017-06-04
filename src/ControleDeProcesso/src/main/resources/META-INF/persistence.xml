@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.data.entity.Usuario</class>
     <class>br.data.entity.Cadastroenviodesenho</class>
+    <class>br.data.entity.Cadastroestrutura</class>
+    <class>br.data.entity.Cadastrodesenho</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/controledeprocesso"/>

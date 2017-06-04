@@ -24,13 +24,12 @@
                 <p:growl id="messages"/>
                 <p:menubar>
 
-                        <p:menuitem value="Abrir" url="#" icon="ui-icon-folder-open" />
-                        <p:menuitem value="Novo" url="#" icon="ui-icon-document" />
-                        <p:menuitem value="Salvar" url="#" icon="ui-icon-disk" />
-                        <p:menuitem value="Salvar Como" url="#" icon="ui-icon-bookmark"  />
-                        <p:menuitem value="Excluir" url="#" icon="ui-icon-trash" />
-
-                    <p:menuitem value="Adicionar Desenho" icon="ui-icon-plusthick" url="http://localhost:8084/ControleProducao/cadastrodesenho.xhtml"/>
+                    <p:menuitem value="Abrir" url="#" icon="ui-icon-folder-open" />
+                    <p:menuitem value="Novo" url="#" icon="ui-icon-document" />
+                    <p:menuitem value="Salvar" url="#" icon="ui-icon-disk" action="#{jsfCadastroestrutura.persist()}" />
+                    <p:menuitem value="Salvar Como" url="#" icon="ui-icon-bookmark" action="#{jsfCadastroestrutura.merge()}" />
+                    <p:menuitem value="Excluir" url="#" icon="ui-icon-trash" />
+                    <p:menuitem value="Adicionar Desenho" icon="ui-icon-plusthick" url="http://localhost:8084/ControleDeProcesso/faces/cadastrodedesenho.xhtml"/>
                     <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
                 </p:menubar>
 
@@ -53,43 +52,43 @@
                     <h:outputText/>
                     <h:outputText/>
 
-                    <p:inputText size="106" />
+                    <p:inputText size="106" value="#{jsfCadastroestrutura.nome}"/>
                 </h:panelGrid>
 
                 <h:panelGrid columns="10">
 
                     <h:outputText value="Estrutura " escape="false" />
-                    <p:inputText style="width: 115px" />
+                    <p:inputText style="width: 115px" value="#{jsfCadastroestrutura.estrutura}"/>
                     <h:outputText value="Pedido " escape="true" />
-                    <p:inputMask id="pedido" value="#{maskView.pedido}" mask="999999/999" style="width: 100px"/>
+                    <p:inputText style="width: 115px" value="#{jsfCadastroestrutura.pedido}"/>
                     <h:outputText value="Potência " escape="true" />
-                    <p:inputText style="width: 115px" />
+                    <p:inputText style="width: 115px" value="#{jsfCadastroestrutura.potencia}"/>
                     <h:outputText value="Alta Tensâo " escape="true" style="size: 50" />
-                    <p:inputText style="width: 115px" />
+                    <p:inputText style="width: 115px" value="#{jsfCadastroestrutura.altatensao}"/>
                     <h:outputText value="Baixa Tensão " escape="true" />
-                    <p:inputText style="width: 115px" />
+                    <p:inputText style="width: 115px" value="#{jsfCadastroestrutura.baixatensao}"/>
 
-                    <p:outputLabel for="tipo" value="TipoConstrutivo" style="font-size: 17px; font-family: inherit"/>
-                    <p:selectOneMenu id="tipo" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <!--<p:outputLabel for="tipo" value="TipoConstrutivo" style="font-size: 17px; font-family: inherit"/>
+                    <p:selectOneMenu id="tipo" value="#" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Óleo" itemValue="Óleo" />
                         <f:selectItem itemLabel="Seco" itemValue="Seco" />
-                    </p:selectOneMenu>
+                    </p:selectOneMenu>-->
 
                     <p:outputLabel for="estilo" value="EstiloConstrutivo" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="estilo" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="estilo" value="#{jsfCadastroestrutura.estiloconstrutivo}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Poste" itemValue="Poste" />
                         <f:selectItem itemLabel="Corrugado" itemValue="Corrugado" />
                         <f:selectItem itemLabel="Subestação" itemValue="Subestação" />                        
                     </p:selectOneMenu>
-                    
+
 
                 </h:panelGrid> 
                 <h2>Status</h2>
-                <h:panelGrid columns="8">              
+                <h:panelGrid columns="6">              
                     <p:outputLabel for="projeto" value="Status Projeto" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="projeto" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="projeto" value="#{jsfCadastroestrutura.statusprojeto}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -97,7 +96,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="nucleo" value="Status Núcleo" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="nucleo" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="nucleo" value="#{jsfCadastroestrutura.statusnucleo}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -105,7 +104,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="parteativa" value="Status Parte Ativa" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="parteativa" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="parteativa" value="#{jsfCadastroestrutura.statusparteativa}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -113,7 +112,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="caldeiraria" value="Status Caldeiraria" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="caldeiraria" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="caldeiraria" value="#{jsfCadastroestrutura.statuscaldeiraria}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -121,7 +120,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="pintura" value="Status Pintura" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="pintura" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="pintura" value="#{jsfCadastroestrutura.statuspintura}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -129,7 +128,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="fechamento" value="Status Fechamento" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="fechamento" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="fechamento" value="#{jsfCadastroestrutura.statusfechamento}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -137,7 +136,7 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="laboratorio" value="Status Laboratorio" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="laboratorio" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="laboratorio" value="#{jsfCadastroestrutura.statuslaboratorio}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -145,7 +144,15 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                     <p:outputLabel for="expedicao" value="Status Expedicao" style="font-size: 17px; font-family: inherit" />
-                    <p:selectOneMenu id="expedicao" value="#{metodo}" style="width:125px; font-size: 17px">
+                    <p:selectOneMenu id="expedicao" value="#{jsfCadastroestrutura.statusexpedicao}" style="width:125px; font-size: 17px">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
+                        <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
+                        <f:selectItem itemLabel="Cancelado" itemValue="Cancelado" />   
+                        <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
+                    </p:selectOneMenu>
+                    <p:outputLabel for="marcenaria" value="Status Marcenaria" style="font-size: 17px; font-family: inherit" />
+                    <p:selectOneMenu id="marcenaria" value="#{jsfCadastroestrutura.statusmarcenaria}" style="width:125px; font-size: 17px">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItem itemLabel="Concluido" itemValue="Concluido" />
                         <f:selectItem itemLabel="Em Andamento" itemValue="Em Andamento" />
@@ -153,12 +160,12 @@
                         <f:selectItem itemLabel="Aguardando" itemValue="Aguardando" /> 
                     </p:selectOneMenu>
                 </h:panelGrid>
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 <h3 style="margin-top:0"></h3>
                 <p:tabView>
                     <p:tab title="Desenhos">

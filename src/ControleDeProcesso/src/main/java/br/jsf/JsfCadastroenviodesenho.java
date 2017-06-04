@@ -1,7 +1,10 @@
 package br.jsf;
 
+import br.data.entity.Cadastroenviodesenho;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.websocket.Session;
 
 @ManagedBean
 @RequestScoped

@@ -31,19 +31,23 @@
     
     <h:body>
         <h:form prependId="false">
+            <!--<h:outputScript name="jsf.js" library="javax.faces" target="head" />
+            onclick="jsf.ajax.request (this, event, {execute:this.id, render:'login'});return false;"-->
+            
             <p:growl id="messages"/>
         <p:menubar>
-            <p:menuitem value="Novo" icon="ui-icon-document" />
-            <p:menuitem id="bt1" value="Salvar" icon="ui-icon-disk" action="#{jsfUsuario.persist()}"/>
-            <p:menuitem value="Atualizar" icon="ui-icon-bookmark" action="#{jsfUsuario.merge()}" />
-            <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
+            <p:menuitem id="novo" value="Novo" icon="ui-icon-document" />
+            <p:menuitem id="salvar" value="Salvar" icon="ui-icon-disk" action="#{jsfUsuario.persist()}"/>
+            
+            <p:menuitem id="atualizar" value="Atualizar" icon="ui-icon-bookmark" action="#{jsfUsuario.merge()}" />
+            <p:menuitem id="sair" value="Sair" url="index.xhtml" icon="ui-icon-close" />
         </p:menubar>
             <br/>
             Nome:
-            <p:inputText value="#{jsfUsuario.login}" />
+            <p:inputText id="login" value="#{jsfUsuario.login}" />
             <br/>
             Senha:
-            <p:password value="#{jsfUsuario.senha}" />
+            <p:password id="senha" value="#{jsfUsuario.senha}" />
             <br/>
             Permissao:
             <p:selectOneMenu id="permissao" value="#{jsfUsuario.permissao}" style="width:200px">
@@ -65,16 +69,16 @@
                 <p:tab title="Usuarios Cadastrados">
                     <h:panelGrid columns="5" cellpadding="10" >                
                         <p:dataTable id="usuarioscadastrados" var="usu" value="#{jsfUsuario.all}">
-                            <p:column style="width: 100px" headerText="Usuario">
+                            <p:column style="width: 200px" headerText="Usuario">
                                 <h:outputText value="#{usu.login}" style="width: 30px" />
                             </p:column>
-                            <p:column style="width: 60px" headerText="Senha">
+                            <p:column style="width: 120px" headerText="Senha">
                                 <h:outputText value="#{usu.senha}" style="width: 10px" />
                             </p:column>
-                            <p:column style="width: 50px" headerText="Permissão">
+                            <p:column style="width: 120px" headerText="Permissão">
                                 <h:outputText value="#{usu.permissao}" style="width: 40px" />
                             </p:column>
-                            <p:column style="width: 6px" headerText="Excluir">
+                            <p:column style="width: 60px" headerText="Excluir">
                                 <p:growl id="message" showDetail="true" />
                                 <p:commandButton  action="#{jsfUsuario.remove(usu)}" update="message" icon="ui-icon-trash">
                                     <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
@@ -84,8 +88,8 @@
                                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog>
                             </p:column>
-                            <p:column style="width: 6px" headerText="Editar" >
-                                <p:commandButton action="#{jsfUsuario.show(usu)}" icon="ui-icon-pencil"/>
+                            <p:column style="width: 60px" headerText="Editar" >
+                                <p:commandButton id="edit" action="#{jsfUsuario.show(usu)}" icon="ui-icon-pencil"/>
                             </p:column>
                         </p:dataTable>
                     </h:panelGrid>
