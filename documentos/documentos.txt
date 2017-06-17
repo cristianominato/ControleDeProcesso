@@ -1,2 +1,3 @@
 O software será desenvolvido para web e será utilizada a o padrão MVC, que vai dividir a aplicação em três partes, o Modelo, a Visão e o Controle. A parte do Modelo é onde estão armazenadas os dados da aplicação e as regras de negócio. A Visão é a parte de interface do usuário e a apresentação das requisições. O Controle é a parte do comportamento da aplicação.
 Estarei utilizando o framework Java Serve Faces (JSF) e o Java Persistência API (JPA). O JSF é framework que simula componentes de interfaces, e o JPA será utilizada para fazer a persistência de objetos Java no banco de dados.
+Primeiro você tem que cadastra para onde o desenho vai ser enviado em Envio de Desenho e depois é só cadastrar o desenho em cadastro de desenho.
