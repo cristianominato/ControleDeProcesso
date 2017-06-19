@@ -19,28 +19,68 @@
             <p:growl id="messages"/>
             <p:menubar>
                 <p:menuitem value="Novo" icon="ui-icon-document" />
-                <p:menuitem value="Salvar" icon="ui-icon-disk" action="#{jsfCadastroenviodesenho.persist()}" />
-                <p:menuitem value="Atualizar" icon="ui-icon-bookmark" />
-                <p:menuitem value="Sair" url="cadastarestrutura.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Salvar" icon="ui-icon-disk" action="#{jsfCadastrodesenho.persist()}" />
+                <p:menuitem value="Atualizar" icon="ui-icon-bookmark" action="#{jsfCadastrodesenho.merge()}" />
+                <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
             </p:menubar>
             <br/>
             <h:panelGrid columns="2">
                 <h:outputText value="Desenho " escape="false" />
-                <p:inputText style="width: 150px" />
-                <h:outputText value="Rev. " escape="true" />
-                <p:inputText style="width: 50px" />
+                <p:inputText style="width: 150px" value="#{jsfCadastrodesenho.desenho}"/>
+                <h:outputText value="Revisao " escape="true" />
+                <p:inputText style="width: 50px" value="#{jsfCadastrodesenho.revisao}"/>
                 <h:outputText value="Nome do Desenho " escape="true" />
 
-                <p:selectOneMenu id="nomedesenho"  value="#{jsfCadastroenviodesenho.nome}">  
+                <p:selectOneMenu id="nomedesenho"  value="#{jsfCadastrodesenho.fkcadastroenviodesenho}">  
                     <f:selectItem itemLabel="----Selecione----" itemValue="0" />  
                     <f:selectItems value="#{jsfCadastroenviodesenho.all}" var="env"  
-                                   itemLabel="#{env.nome}" itemValue="#{env}" />  
+                                   itemLabel="#{env.nome}" itemValue="#{env.nome}" />  
                 </p:selectOneMenu>
 
 
 
             </h:panelGrid>
             <br/>
+            
+            
+            <h3 style="margin-top:0"></h3>
+            <p:tabView>
+                <p:tab title="Cadastrados de Desenhos">
+                    <h:panelGrid columns="5" cellpadding="10" >                
+                        <p:dataTable id="cadastrodedesenho" var="des" value="#{jsfCadastrodesenho.all}">
+                            <p:column style="width: 120px" headerText="Desenho">
+                                <h:outputText value="#{des.desenho}" style="width: 30px" />
+                            </p:column>
+                            <p:column style="width: 160px" headerText="Revisao">
+                                <h:outputText value="#{des.revisao}" style="width: 10px" />
+                            </p:column>
+                            <p:column style="width: 240px" headerText="Enviar">
+                                <h:outputText value="#{des.fkcadastroenviodesenho}" style="width: 10px" />
+                            </p:column>
+
+                            <p:column style="width: 60px" headerText="Excluir">
+                                <p:growl id="message" showDetail="true" />
+                                <p:commandButton actionListener="#{jsfCadastrodesenho.remove(des)}" update="message" icon="ui-icon-trash" style="align-items: center">
+                                    <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:column>
+                            <p:column style="width: 60px" headerText="Editar">
+                                <p:commandButton action="#{jsfCadastrodesenho.show(des)}" icon="ui-icon-pencil"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:tab>
+            </p:tabView>
+            
+            
+            
+            
+            
+            
 
 
 

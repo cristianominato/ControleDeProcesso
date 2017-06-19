@@ -8,7 +8,10 @@ br\jsf\JsfUsuario.class
 br\data\entity\Cadastroenviodesenho_.class
 br\jsf\JsfCadastroenviodesenho.class
 br\data\crud\AbstractCrud.class
+br\jsf\JsfCadastrodesenho.class
+br\data\crud\CrudCadastroestrutura.class
 br\data\entity\Cadastroestrutura_.class
+br\data\crud\CrudCadastrodesenho.class
 br\data\crud\UsuarioLogin.class
 br\data\entity\Usuario_.class
 br\data\crud\CrudCadastroenviodesenho.class

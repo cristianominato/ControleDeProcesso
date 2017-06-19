@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.data.entity;
 
 import java.io.Serializable;
@@ -22,17 +17,12 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Cristiano
- */
 @Entity
 @Table(name = "cadastroestrutura")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cadastroestrutura.findAll", query = "SELECT c FROM Cadastroestrutura c")
     , @NamedQuery(name = "Cadastroestrutura.findByNome", query = "SELECT c FROM Cadastroestrutura c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Cadastroestrutura.findByEstrutura", query = "SELECT c FROM Cadastroestrutura c WHERE c.estrutura = :estrutura")
     , @NamedQuery(name = "Cadastroestrutura.findByPedido", query = "SELECT c FROM Cadastroestrutura c WHERE c.pedido = :pedido")
     , @NamedQuery(name = "Cadastroestrutura.findByPotencia", query = "SELECT c FROM Cadastroestrutura c WHERE c.potencia = :potencia")
     , @NamedQuery(name = "Cadastroestrutura.findByAltatensao", query = "SELECT c FROM Cadastroestrutura c WHERE c.altatensao = :altatensao")
@@ -47,18 +37,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cadastroestrutura.findByStatusfechamento", query = "SELECT c FROM Cadastroestrutura c WHERE c.statusfechamento = :statusfechamento")
     , @NamedQuery(name = "Cadastroestrutura.findByStatuslaboratorio", query = "SELECT c FROM Cadastroestrutura c WHERE c.statuslaboratorio = :statuslaboratorio")
     , @NamedQuery(name = "Cadastroestrutura.findByStatusexpedicao", query = "SELECT c FROM Cadastroestrutura c WHERE c.statusexpedicao = :statusexpedicao")
-    , @NamedQuery(name = "Cadastroestrutura.findByStatusmaercenaria", query = "SELECT c FROM Cadastroestrutura c WHERE c.statusmaecenaria = :statusmarcenaria")})
+    , @NamedQuery(name = "Cadastroestrutura.findByEstrutura", query = "SELECT c FROM Cadastroestrutura c WHERE c.estrutura = :estrutura")
+    , @NamedQuery(name = "Cadastroestrutura.findByStatusmarcenaria", query = "SELECT c FROM Cadastroestrutura c WHERE c.statusmarcenaria = :statusmarcenaria")})
 public class Cadastroestrutura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Size(max = 100)
     @Column(name = "nome")
     private String nome;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "estrutura")
-    private String estrutura;
     @Size(max = 10)
     @Column(name = "pedido")
     private String pedido;
@@ -101,14 +87,20 @@ public class Cadastroestrutura implements Serializable {
     @Size(max = 15)
     @Column(name = "statusexpedicao")
     private String statusexpedicao;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "estrutura")
+    private String estrutura;
     @Size(max = 15)
     @Column(name = "statusmarcenaria")
     private String statusmarcenaria;
-    @OneToMany(mappedBy = "fKcadastroestrutura")
+    @OneToMany(mappedBy = "fkcadastroestrutura")
     private Collection<Cadastrodesenho> cadastrodesenhoCollection;
-    @JoinColumn(name = "FK_cadastrodesenho", referencedColumnName = "desenho")
+    @JoinColumn(name = "fkcadastrodesenho", referencedColumnName = "desenho")
     @ManyToOne
-    private Cadastrodesenho fKcadastrodesenho;
+    private Cadastrodesenho fkcadastrodesenho;
 
     public Cadastroestrutura() {
     }
@@ -123,14 +115,6 @@ public class Cadastroestrutura implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEstrutura() {
-        return estrutura;
-    }
-
-    public void setEstrutura(String estrutura) {
-        this.estrutura = estrutura;
     }
 
     public String getPedido() {
@@ -244,7 +228,15 @@ public class Cadastroestrutura implements Serializable {
     public void setStatusexpedicao(String statusexpedicao) {
         this.statusexpedicao = statusexpedicao;
     }
-    
+
+    public String getEstrutura() {
+        return estrutura;
+    }
+
+    public void setEstrutura(String estrutura) {
+        this.estrutura = estrutura;
+    }
+
     public String getStatusmarcenaria() {
         return statusmarcenaria;
     }
@@ -262,12 +254,12 @@ public class Cadastroestrutura implements Serializable {
         this.cadastrodesenhoCollection = cadastrodesenhoCollection;
     }
 
-    public Cadastrodesenho getFKcadastrodesenho() {
-        return fKcadastrodesenho;
+    public Cadastrodesenho getFkcadastrodesenho() {
+        return fkcadastrodesenho;
     }
 
-    public void setFKcadastrodesenho(Cadastrodesenho fKcadastrodesenho) {
-        this.fKcadastrodesenho = fKcadastrodesenho;
+    public void setFkcadastrodesenho(Cadastrodesenho fkcadastrodesenho) {
+        this.fkcadastrodesenho = fkcadastrodesenho;
     }
 
     @Override

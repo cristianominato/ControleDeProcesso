@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.data.entity;
 
 import java.io.Serializable;
@@ -22,18 +17,14 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Cristiano
- */
 @Entity
 @Table(name = "cadastrodesenho")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cadastrodesenho.findAll", query = "SELECT c FROM Cadastrodesenho c")
     , @NamedQuery(name = "Cadastrodesenho.findByDesenho", query = "SELECT c FROM Cadastrodesenho c WHERE c.desenho = :desenho")
-    , @NamedQuery(name = "Cadastrodesenho.findByRevisao", query = "SELECT c FROM Cadastrodesenho c WHERE c.revisao = :revisao")
-    , @NamedQuery(name = "Cadastrodesenho.findByCadastroenviodesenho", query = "SELECT c FROM Cadastrodesenho c WHERE c.cadastroenviodesenho = :cadastroenviodesenho")})
+    , @NamedQuery(name = "Cadastrodesenho.findByCadastroenviodesenho", query = "SELECT c FROM Cadastrodesenho c WHERE c.cadastroenviodesenho = :cadastroenviodesenho")
+    , @NamedQuery(name = "Cadastrodesenho.findByRevisao", query = "SELECT c FROM Cadastrodesenho c WHERE c.revisao = :revisao")})
 public class Cadastrodesenho implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,18 +34,21 @@ public class Cadastrodesenho implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "desenho")
     private String desenho;
-    @Column(name = "revisao")
-    private Integer revisao;
     @Size(max = 50)
     @Column(name = "cadastroenviodesenho")
     private String cadastroenviodesenho;
-    @JoinColumn(name = "FK_cadastroenviodesenho", referencedColumnName = "nome")
+    @Size(max = 10)
+    @Column(name = "revisao")
+    private String revisao;
+    @OneToMany(mappedBy = "fkcadastrodesenho")
+    private Collection<Cadastroenviodesenho> cadastroenviodesenhoCollection;
+    @JoinColumn(name = "fkcadastroenviodesenho", referencedColumnName = "nome")
     @ManyToOne
-    private Cadastroenviodesenho fKcadastroenviodesenho;
-    @JoinColumn(name = "FK_cadastroestrutura", referencedColumnName = "estrutura")
+    private Cadastroenviodesenho fkcadastroenviodesenho;
+    @JoinColumn(name = "fkcadastroestrutura", referencedColumnName = "estrutura")
     @ManyToOne
-    private Cadastroestrutura fKcadastroestrutura;
-    @OneToMany(mappedBy = "fKcadastrodesenho")
+    private Cadastroestrutura fkcadastroestrutura;
+    @OneToMany(mappedBy = "fkcadastrodesenho")
     private Collection<Cadastroestrutura> cadastroestruturaCollection;
 
     public Cadastrodesenho() {
@@ -72,14 +66,6 @@ public class Cadastrodesenho implements Serializable {
         this.desenho = desenho;
     }
 
-    public Integer getRevisao() {
-        return revisao;
-    }
-
-    public void setRevisao(Integer revisao) {
-        this.revisao = revisao;
-    }
-
     public String getCadastroenviodesenho() {
         return cadastroenviodesenho;
     }
@@ -88,20 +74,37 @@ public class Cadastrodesenho implements Serializable {
         this.cadastroenviodesenho = cadastroenviodesenho;
     }
 
-    public Cadastroenviodesenho getFKcadastroenviodesenho() {
-        return fKcadastroenviodesenho;
+    public String getRevisao() {
+        return revisao;
     }
 
-    public void setFKcadastroenviodesenho(Cadastroenviodesenho fKcadastroenviodesenho) {
-        this.fKcadastroenviodesenho = fKcadastroenviodesenho;
+    public void setRevisao(String revisao) {
+        this.revisao = revisao;
     }
 
-    public Cadastroestrutura getFKcadastroestrutura() {
-        return fKcadastroestrutura;
+    @XmlTransient
+    public Collection<Cadastroenviodesenho> getCadastroenviodesenhoCollection() {
+        return cadastroenviodesenhoCollection;
     }
 
-    public void setFKcadastroestrutura(Cadastroestrutura fKcadastroestrutura) {
-        this.fKcadastroestrutura = fKcadastroestrutura;
+    public void setCadastroenviodesenhoCollection(Collection<Cadastroenviodesenho> cadastroenviodesenhoCollection) {
+        this.cadastroenviodesenhoCollection = cadastroenviodesenhoCollection;
+    }
+
+    public Cadastroenviodesenho getFkcadastroenviodesenho() {
+        return fkcadastroenviodesenho;
+    }
+
+    public void setFkcadastroenviodesenho(Cadastroenviodesenho fkcadastroenviodesenho) {
+        this.fkcadastroenviodesenho = fkcadastroenviodesenho;
+    }
+
+    public Cadastroestrutura getFkcadastroestrutura() {
+        return fkcadastroestrutura;
+    }
+
+    public void setFkcadastroestrutura(Cadastroestrutura fkcadastroestrutura) {
+        this.fkcadastroestrutura = fkcadastroestrutura;
     }
 
     @XmlTransient
