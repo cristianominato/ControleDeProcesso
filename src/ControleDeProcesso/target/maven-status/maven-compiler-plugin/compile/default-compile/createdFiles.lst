@@ -1,16 +1,12 @@
 br\data\entity\Cadastroenviodesenho.class
 br\data\entity\Cadastrodesenho.class
-br\data\entity\Cadastrodesenho_.class
 br\jsf\JsfCadastroestrutura.class
 br\data\crud\CrudUsuario.class
 br\data\crud\EMNames.class
 br\jsf\JsfUsuario.class
-br\data\entity\Cadastroenviodesenho_.class
 br\jsf\JsfCadastroenviodesenho.class
 br\data\crud\AbstractCrud.class
-br\jsf\JsfCadastrodesenho.class
 br\data\crud\CrudCadastroestrutura.class
-br\data\entity\Cadastroestrutura_.class
 br\data\crud\CrudCadastrodesenho.class
 br\data\crud\UsuarioLogin.class
 br\data\entity\Usuario_.class

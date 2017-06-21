@@ -1,6 +1,7 @@
 package br.jsf;
 
 import br.data.entity.Cadastrodesenho;
+import com.sun.org.apache.xml.internal.utils.StringToIntTable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -50,9 +51,9 @@ public class JsfCadastrodesenho {
         des = new br.data.entity.Cadastrodesenho();
         des.setDesenho(desenho);
         des.setRevisao(revisao);
-        //des.setCadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(desenho));
+        //des.setCadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(fkcadastroenviodesenho));
         //des.setFkcadastroenviodesenho(fkcadastroenviodesenho);
-        des.setCadastroenviodesenho(fkcadastroenviodesenho);
+        //des.setCadastroenviodesenho(fkcadastroenviodesenho);
         new br.data.crud.CrudCadastrodesenho().persist(des);
     }  
     

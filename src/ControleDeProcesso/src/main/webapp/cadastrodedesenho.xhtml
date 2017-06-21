@@ -31,13 +31,10 @@
                 <p:inputText style="width: 50px" value="#{jsfCadastrodesenho.revisao}"/>
                 <h:outputText value="Nome do Desenho " escape="true" />
 
-                <p:selectOneMenu id="nomedesenho"  value="#{jsfCadastrodesenho.fkcadastroenviodesenho}">  
+                <p:selectOneMenu value="#{jsfCadastrodesenho.fkcadastroenviodesenho}">  
                     <f:selectItem itemLabel="----Selecione----" itemValue="0" />  
-                    <f:selectItems value="#{jsfCadastroenviodesenho.all}" var="env"  
-                                   itemLabel="#{env.nome}" itemValue="#{env.nome}" />  
+                    <f:selectItems value="#{jsfCadastroenviodesenho.all}" var="env" itemLabel="#{env.nome}" itemValue="#{env.nome}" />  
                 </p:selectOneMenu>
-
-
 
             </h:panelGrid>
             <br/>

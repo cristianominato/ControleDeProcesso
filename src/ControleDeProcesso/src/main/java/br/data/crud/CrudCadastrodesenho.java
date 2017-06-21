@@ -10,6 +10,8 @@ public class CrudCadastrodesenho extends AbstractCrud<br.data.entity.Cadastrodes
 
     public CrudCadastrodesenho() {
         super(br.data.entity.Cadastrodesenho.class);
+        //super (Cadastrodesenho.class);
+
     }
 
     @Override
