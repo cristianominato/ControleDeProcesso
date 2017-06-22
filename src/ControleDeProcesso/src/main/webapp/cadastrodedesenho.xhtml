@@ -18,7 +18,7 @@
         <h:form>  
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Novo" icon="ui-icon-document" />
+                <p:menuitem value="Novo" icon="ui-icon-document" action="#{jsfCadastrodesenho.novo()}"/>
                 <p:menuitem value="Salvar" icon="ui-icon-disk" action="#{jsfCadastrodesenho.persist()}" />
                 <p:menuitem value="Atualizar" icon="ui-icon-bookmark" action="#{jsfCadastrodesenho.merge()}" />
                 <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
@@ -52,7 +52,7 @@
                                 <h:outputText value="#{des.revisao}" style="width: 10px" />
                             </p:column>
                             <p:column style="width: 240px" headerText="Enviar">
-                                <h:outputText value="#{des.fkcadastroenviodesenho}" style="width: 10px" />
+                                <h:outputText value="#{des.fkcadastroenviodesenho.nome}" style="width: 10px" />
                             </p:column>
 
                             <p:column style="width: 60px" headerText="Excluir">

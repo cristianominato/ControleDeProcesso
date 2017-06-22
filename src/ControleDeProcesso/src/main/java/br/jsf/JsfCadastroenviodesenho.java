@@ -59,5 +59,10 @@ public class JsfCadastroenviodesenho {
         env.setEnviar(enviar);
         new br.data.crud.CrudCadastroenviodesenho().merge(env);
     }
+    
+    public void novo(){
+        this.nome = null;
+        this.enviar = null;
+    }
 
 }

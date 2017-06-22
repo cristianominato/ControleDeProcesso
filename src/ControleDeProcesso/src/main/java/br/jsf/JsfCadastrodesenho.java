@@ -51,12 +51,9 @@ public class JsfCadastrodesenho {
         des = new br.data.entity.Cadastrodesenho();
         des.setDesenho(desenho);
         des.setRevisao(revisao);
-        //des.setCadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(fkcadastroenviodesenho));
-        //des.setFkcadastroenviodesenho(fkcadastroenviodesenho);
-        //des.setCadastroenviodesenho(fkcadastroenviodesenho);
+        des.setFkcadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(fkcadastroenviodesenho));
         new br.data.crud.CrudCadastrodesenho().persist(des);
     }  
-    
     
     public void remove(br.data.entity.Cadastrodesenho des){
         new br.data.crud.CrudCadastrodesenho().remove(des);
@@ -65,16 +62,21 @@ public class JsfCadastrodesenho {
     public void show(br.data.entity.Cadastrodesenho des){
         this.desenho = des.getDesenho();
         this.revisao = des.getRevisao();
-        //this.fkcadastroenviodesenho = des.getFkcadastroenviodesenho();
+        this.fkcadastroenviodesenho = des.getFkcadastroenviodesenho().getNome();
     }
     
-
     public void merge(){
         br.data.entity.Cadastrodesenho des;
         des = new br.data.crud.CrudCadastrodesenho().find(desenho);
         des.setRevisao(revisao);
-        //des.setCadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(desenho));
-        //des.setFkcadastroenviodesenho(fkcadastroenviodesenho);
+        des.setFkcadastroenviodesenho(new br.data.crud.CrudCadastroenviodesenho().find(fkcadastroenviodesenho));
         new br.data.crud.CrudCadastrodesenho().merge(des);
     }
+    
+    public void novo(){
+        this.desenho = null;
+        this.revisao = null;
+        this.fkcadastroenviodesenho = null;
+    }
+    
 }

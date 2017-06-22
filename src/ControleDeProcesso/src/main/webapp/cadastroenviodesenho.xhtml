@@ -11,7 +11,7 @@
         <h:form>  
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Novo" icon="ui-icon-document" />
+                <p:menuitem value="Novo" icon="ui-icon-document" action="#{jsfCadastroenviodesenho.novo()}"/>
                 <p:menuitem value="Salvar" icon="ui-icon-disk" action="#{jsfCadastroenviodesenho.persist()}"/>
                 <p:menuitem value="Atualizar" icon="ui-icon-bookmark" action="#{jsfCadastroenviodesenho.merge()}" />
                 <p:menuitem value="Sair" url="index.xhtml" icon="ui-icon-close" />
