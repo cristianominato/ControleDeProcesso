@@ -1,4 +1,4 @@
-INSERT INTO Cadastroenviodesenho VALUES ('nucleo', 'nucleo');
+INSERT INTO cadastroenviodesenho VALUES ('nucleo', 'nucleo');
 INSERT INTO cadastroenviodesenho VALUES ('bobina bt', 'bobinagem');
 INSERT INTO cadastroenviodesenho VALUES ('calco', 'marcenaria');
 
