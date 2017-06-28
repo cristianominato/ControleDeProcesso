@@ -2,9 +2,7 @@ CREATE TABLE cadastroenviodesenho
 (
   nome character(50) NOT NULL,
   enviar character(20),
-  fkcadastrodesenho character(30),
-  CONSTRAINT nome PRIMARY KEY (nome),
-  CONSTRAINT fkcadastrodesenho FOREIGN KEY (fkcadastrodesenho) REFERENCES cadastrodesenho (desenho) ON UPDATE NO ACTION ON DELETE NO ACTION
+  CONSTRAINT nome PRIMARY KEY (nome)
 );
 
 CREATE TABLE cadastrodesenho
@@ -15,8 +13,6 @@ CREATE TABLE cadastrodesenho
   fkcadastroestrutura character(10),
   revisao character(10),
   CONSTRAINT desenho PRIMARY KEY (desenho),
-  CONSTRAINT fkcadastroenviodesenho FOREIGN KEY (fkcadastroenviodesenho)
-      REFERENCES cadastroenviodesenho (nome) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fkcadastroenviodesenho FOREIGN KEY (fkcadastroenviodesenho) REFERENCES cadastroenviodesenho (nome) ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fkcadastroestrutura FOREIGN KEY (fkcadastroestrutura) REFERENCES cadastroestrutura (estrutura) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
