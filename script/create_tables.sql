@@ -2,27 +2,10 @@ CREATE TABLE cadastroenviodesenho
 (
   nome character(50) NOT NULL,
   enviar character(20),
-  projeto boolean,
-  nucleo boolean,
-  bobinagem boolean,
-  caldeiraria boolean,
-  parteativa boolean,
-  fechamento boolean,
-  pintura boolean,
-  laboratorio boolean,
-  almoxarifado boolean,
-  marcenaria boolean,
   fkcadastrodesenho character(30),
   CONSTRAINT nome PRIMARY KEY (nome),
-  CONSTRAINT fkcadastrodesenho FOREIGN KEY (fkcadastrodesenho)
-      REFERENCES cadastrodesenho (desenho) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-WITH (
-  OIDS=FALSE
+  CONSTRAINT fkcadastrodesenho FOREIGN KEY (fkcadastrodesenho) REFERENCES cadastrodesenho (desenho) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE cadastroenviodesenho
-  OWNER TO postgres;
 
 CREATE TABLE cadastrodesenho
 (
@@ -35,12 +18,5 @@ CREATE TABLE cadastrodesenho
   CONSTRAINT fkcadastroenviodesenho FOREIGN KEY (fkcadastroenviodesenho)
       REFERENCES cadastroenviodesenho (nome) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fkcadastroestrutura FOREIGN KEY (fkcadastroestrutura)
-      REFERENCES cadastroestrutura (estrutura) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-WITH (
-  OIDS=FALSE
+  CONSTRAINT fkcadastroestrutura FOREIGN KEY (fkcadastroestrutura) REFERENCES cadastroestrutura (estrutura) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE cadastrodesenho
-  OWNER TO postgres;
